@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>Card Generator</title>
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			function getParameterByName(name) {
+			    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			        results = regex.exec(location.search);
+			    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+			}
+
+			$(function() {
+				els = $(".left *, .right *")
+				for(var i=0; i<els.length; i++) {
+					var obj = $(els.get(i))
+					if(getParameterByName(obj.attr("id"))) {
+						obj.html(getParameterByName(obj.attr("id")))
+					}
+				}
+			})
+		</script>
+		<style>
+			html { background: #eee; }
+
+			body {
+				font-family: "Helvetica";
+				margin: 0 auto;
+				background: #fff;
+				width: 950px;
+				height: 570px;
+				padding: 57px;
+				box-sizing: border-box;
+				font-size: 30px;
+			}
+
+			#name { font-weight: bold; font-size: 40px; }
+			#position { color: blue; }
+
+			.left { float: left; text-align: left; }
+			.right { float: right; text-align: right; }
+			.center { text-align: center; }
+		</style>
+	</head>
+
+	<body>
+		<div class="center">
+			<img
+				width="400"
+				src="http://sightmachine.com/sites/all/themes/custom/v2/img/svg/logo_stacked_rgb.svg">
+		</div>
+		<div class="left">
+			<p id="name"></p>
+			<p id="position"></p>
+			<p id="phone"></p>
+			<p id="email"></p>
+		</div>
+		<div class="right">
+			<p id="address1">3808 Plaza Drive</p>
+			<p id="address2">Ann Arbor, MI 48104</p>
+			<p id="url">http://sightmachine.com</p>
+		</div>
+	</body>
+</html>
