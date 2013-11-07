@@ -1,65 +1,82 @@
 <html>
 	<head>
 		<title>Card Generator</title>
-
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,800,600' rel='stylesheet' type='text/css'>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			function getParameterByName(name) {
 			    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 			    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-			        results = regex.exec(location.search);
+			        results = regex.exec(location.search || "");
 			    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 			}
 
 			$(function() {
-				els = $(".left *, .right *")
+				els = $(".right p")
 				for(var i=0; i<els.length; i++) {
 					var obj = $(els.get(i))
 					if(getParameterByName(obj.attr("id"))) {
 						obj.html(getParameterByName(obj.attr("id")))
 					}
 				}
+
+				tmp = $("<div id='tmp'></div>").appendTo($("body"))
+				tmp.append($(".right").html())
+				var height = tmp.innerHeight()
+				tmp.remove()
+				$(".right").css("height", height + "px")
 			})
 		</script>
 		<style>
 			html { background: #eee; }
 
 			body {
-				font-family: "Helvetica";
+				font-family: 'Open Sans', sans-serif;
 				margin: 0 auto;
 				background: #fff;
-				width: 950px;
-				height: 570px;
-				padding: 57px;
+				width: 1050px;
+				height: 600px;
+				padding: 19px;
 				box-sizing: border-box;
 				font-size: 30px;
+				position: relative;
 			}
 
-			#name { font-weight: bold; font-size: 40px; }
-			#position { color: blue; }
+			#name { font-weight: 800; font-size: 29px; }
+			#position { width: 490px; font-weight: 600; font-size: 23px; color: #0070FF; text-transform: uppercase; }
+			
+			img { margin: 210px 0; }
+			p { margin: 0; padding: 0; }
 
-			.left { float: left; text-align: left; }
-			.right { float: right; text-align: right; }
-			.center { text-align: center; }
+			.right { 
+				  margin: auto;
+				  position: absolute;
+				  top: 0; bottom: 0;
+				  left: 475px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div class="center">
+		<div class="left">
 			<img
 				width="400"
-				src="http://sightmachine.com/sites/all/themes/custom/v2/img/svg/logo_stacked_rgb.svg">
-		</div>
-		<div class="left">
-			<p id="name"></p>
-			<p id="position"></p>
-			<p id="phone"></p>
-			<p id="email"></p>
+				src="http://sightmachine.com/sites/all/themes/custom/v2/img/svg/logo_stacked_rgb.svg">			
 		</div>
 		<div class="right">
+			<p id="name">John Doe</p>
+			<p id="position">Human Identity Executive</p>
+			<br>
+			
+			<p id="phone">(555) 000-1234</p>
+			<p id="email">jdoe@humans.org</p>
+			<br>
+
+			<p id="url">http://sightmachine.com</p>
+			<br>
+			
 			<p id="address1">3808 Plaza Drive</p>
 			<p id="address2">Ann Arbor, MI 48104</p>
-			<p id="url">http://sightmachine.com</p>
 		</div>
 	</body>
 </html>
