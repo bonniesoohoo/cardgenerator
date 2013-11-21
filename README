@@ -1,4 +1,3 @@
 Change directory to this repo
 Download your employee spreadsheed as `doc.tsv` to this directory
-Run `python -m SimpleHTTPServer` from this directory
-Run `phantomjs phantom-script.js`
+Run `./run` from here.
