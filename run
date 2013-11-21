@@ -1,0 +1,10 @@
+rm -rf output/
+mkdir output/
+python -m SimpleHTTPServer &
+SPID=$!
+sleep 5s
+phantomjs phantom-script.js
+rm -rf forprint/
+mkdir forprint/
+python cmyk.py
+kill -9 $SPID
